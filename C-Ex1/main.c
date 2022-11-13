@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include "NumClass.h"
 
-void main() {
+int main() {
     int start_num, end_num;
     int num;
+
     printf("Please enter your range: ");
     scanf("%d %d",&start_num, &end_num);
 
@@ -47,8 +48,6 @@ void main() {
     }
     printf("\n");
 
-    
-
-
-
+    // Terminator
+    return 0;
 }

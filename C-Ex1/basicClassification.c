@@ -3,11 +3,11 @@
 // Implemetnation of 'isPrime' function declaration from NumClass.h
 int isPrime(int num)
 {
-    if (num <= 1)
+    if (num < 1)
     {
         return 0;
     }
-    else if (num == 2)
+    else if (num == 2 || num == 1)
     {
         return 1;
     }

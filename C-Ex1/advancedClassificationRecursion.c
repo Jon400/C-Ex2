@@ -1,11 +1,15 @@
 #include "NumClass.h"
+#include <stdio.h>
+
+// revesre declaration
+int rev(int, int);
 
 // Implemetnation of 'isPalindrom' function declaration from NumClass.h using recursions
 int isPalindrome(int num)
 {
-    int n_digit;
-    int first_digit;
-    int sub_num;
+    //int n_digit;
+    //int first_digit;
+    //int sub_num;
     if (num < 0)
     {
         return 0;
@@ -15,12 +19,12 @@ int isPalindrome(int num)
         return 1;
     }
 
-    n_digit = ((1 / num) * 10) % 10;
-    sub_num = 1/ ((1 / num) - ((1 / num) * 10) % 10);
-    sub_num = sub_num/10;
-    first_digit = num % 10;
-
-    return (n_digit == first_digit) && isPalindrome(sub_num);
+    if(isPalindrome(num/10)){
+        if(num % 10 != (num / 10) % 10){
+            return 0;
+        }
+    }
+    return 1;
 }
 
 // find armstrong declaration
