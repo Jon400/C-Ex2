@@ -1,5 +1,4 @@
 #include "NumClass.h"
-#include <math.h>
 
 // Implemetnation of 'isPrime' function declaration from NumClass.h
 int isPrime(int num)
@@ -15,14 +14,15 @@ int isPrime(int num)
     else if (num % 2 == 0)
     {
         return 0;
-    }  
+    }
     else
     {
         int x;
-        int sqrt_num = sqrt(num);
         int step_size = 2;
-        for (x = 3; x <= sqrt_num; x += step_size){
-            if (num % x == 0){
+        for (x = 3; x < num; x += step_size)
+        {
+            if (num % x == 0)
+            {
                 return 0;
             }
         }
@@ -38,7 +38,8 @@ int isStrong(int num)
     int x;
     int res = 0;
 
-    if (temp_num <= 0){
+    if (temp_num <= 0)
+    {
         return 0;
     }
 
