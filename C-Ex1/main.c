@@ -4,9 +4,16 @@
 int main() {
     int start_num, end_num;
     int num;
+    int res;
 
+    res = 1;
     printf("Please enter your range: ");
-    scanf("%d %d",&start_num, &end_num);
+    res = scanf("%d%d",&start_num, &end_num);
+    if(res == 0 || res == 26){
+        printf("input is invalid");
+        return 0;
+    }
+
 
     // Print all armstong numbers in the given range
     printf("The Armstrong numbers are:");

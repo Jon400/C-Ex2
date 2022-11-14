@@ -1,8 +1,11 @@
 #include "NumClass.h"
 #include <stdio.h>
 
-// revesre declaration
-int rev(int, int);
+// pal function declaration
+int pal(int, int);
+
+// find armstrong declaration
+int findArmstrong(int, int);
 
 // Implemetnation of 'isPalindrom' function declaration from NumClass.h using recursions
 int isPalindrome(int num)
@@ -14,21 +17,26 @@ int isPalindrome(int num)
     {
         return 0;
     }
-     if (num < 10)
-    {
+    if (num == 0){
         return 1;
     }
-
-    if(isPalindrome(num/10)){
-        if(num % 10 != (num / 10) % 10){
-            return 0;
-        }
+    if (num % 10 == 0){
+        return 0;
     }
-    return 1;
+     
+    return pal(num, 0);
 }
 
-// find armstrong declaration
-int findArmstrong(int, int);
+// This function support isPalindrome to implement recursion algorithm to determine if the number is palindrome
+int pal (int num1, int num2){
+    if (num1 >= num2){
+        if (num1 == num2 || num2 * 10 + (num1 % 10) == num1){
+            return 1;
+        }
+        return pal(num1 / 10, num2 * 10 + (num1 % 10));
+    }
+    return 0;
+}
 
 // Implemetnation of 'isArmstrong' function declaration from NumClass.h using recursions
 int isArmstrong(int num)
