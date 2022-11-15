@@ -7,7 +7,6 @@ int main() {
     int res;
 
     res = 1;
-    printf("Please enter your range: ");
     res = scanf("%d%d",&start_num, &end_num);
     if(res == 0 || res == 26){
         printf("input is invalid");
@@ -53,7 +52,7 @@ int main() {
             printf(" %d", num);
         }
     }
-    //printf("\n");
+    printf("\n");
 
     // Terminator
     return 0;
