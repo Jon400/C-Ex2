@@ -53,7 +53,7 @@ int main() {
             printf(" %d", num);
         }
     }
-    printf("\n");
+    //printf("\n");
 
     // Terminator
     return 0;
