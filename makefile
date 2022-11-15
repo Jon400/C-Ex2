@@ -2,7 +2,7 @@ CFLAGS = -g -fPIC -Wall
 CC=gcc
 AR=ar
 
-.PHONY: loops recursives recursived loopd maindrec all clean
+.PHONY: loops recursives recursived loopd all clean
 
 loops: libclassloops.a
 libclassloops.a: advancedClassificationLoop.o basicClassification.o
