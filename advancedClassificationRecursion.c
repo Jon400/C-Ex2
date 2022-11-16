@@ -5,7 +5,10 @@
 int pal(int, int);
 
 // find armstrong declaration
-int findArmstrong(int, int);
+int calcArmstrong(int, int);
+
+// numOfDigits function declareation
+int numOfDigits(int);
 
 // Implemetnation of 'isPalindrom' function declaration from NumClass.h using recursions
 int isPalindrome(int num)
@@ -41,21 +44,30 @@ int pal (int num1, int num2){
 // Implemetnation of 'isArmstrong' function declaration from NumClass.h using recursions
 int isArmstrong(int num)
 {
-    return findArmstrong(num, num);
+    int n_digits = numOfDigits(num);
+    if (num < 0){
+        return 0;
+    }
+    return (calcArmstrong(num, n_digits) == num);
 }
 
 // This function support isArmstrong to implement recursion algorithm to determine if the number is amstrong
-int findArmstrong(int num, int ex_res)
+int calcArmstrong(int num, int power)
 {
-    if (num < 0)
-    {
-        return 0;
+    if (num < 10 && power > 0){
+        power--;
+        return num * calcArmstrong(num, power);
     }
-    if (num < 10)
-    {
-        return (num * num * num == ex_res);
+    else if (power > 0){
+        return calcArmstrong (num / 10, power) + calcArmstrong (num % 10, power);
     }
+    return 1;
+}
 
-    ex_res = num - ((num % 10) * (num % 10) * (num % 10));
-    return findArmstrong(num / 10, ex_res);
+// This function find recursively the number of digits on base 10
+int numOfDigits(int num){
+    if (num < 10){
+        return 1;
+    }
+    return (numOfDigits(num / 10) + 1);
 }

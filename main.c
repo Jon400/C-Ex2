@@ -8,8 +8,8 @@ int main() {
 
     res = 1;
     res = scanf("%d%d",&start_num, &end_num);
-    if(res == 0 || res == 26){
-        printf("input is invalid");
+    if(res == 0 || res == EOF){
+        printf("input is invalid \n");
         return 0;
     }
 

@@ -19,9 +19,9 @@ libclassloops.so: advancedClassificationLoop.o basicClassification.o
 mains: libclassrec.a main.o
 	$(CC) main.o libclassrec.a -L. -o mains
 maindloop: libclassloops.so
-	$(CC) $(CFLAGS) -o maindloop main.c ./libclassloops.so
+	$(CC) $(CFLAGS) -o maindloop main.c -L. ./libclassloops.so
 maindrec: libclassrec.so
-	$(CC) $(CFLAGS) -o maindrec main.c ./libclassrec.so
+	$(CC) $(CFLAGS) -o maindrec main.c -L. ./libclassrec.so
 all: loops recursives recursived loopd mains maindloop maindrec
 clean:
 	rm *.o *.a *.so mains maindloop maindrec
