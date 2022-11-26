@@ -2,21 +2,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int graph [MAT_SIZE][MAT_SIZE] = {0};
 int main() {
-    size_t i, j = 0;
+    int node_a, node_b = 0;
+    char input = 0;
+    int res = 0;
 
-    for (i = 0; i < MAT_SIZE; i++)
-    {
-        for (j = 0; j < MAT_SIZE; j++)
+    while (scanf("%c", &input) != EOF){
+        if (input == 'A'){
+            getGraph ();
+            iterGetDist();
+        }
+        else if (input == 'B')
         {
-            scanf("%d", &graph[j][i]);
-        }  
-    } 
-
-    getGraph (graph);
+            scanf("%d", &node_a);
+            scanf("%d", &node_b);
+            res = isConnected(node_a, node_b);
+            if (res)
+            {
+                printf("True\n");
+            }
+            else
+            {
+                printf("False\n");
+            }
+        }
+        else
+        {
+            continue;
+        }
+    }
 
     //int bb = getDist(9, 1, MAT_SIZE - 1);
 
-    printf("%d\n", getDist(9, 3, MAT_SIZE - 1));
 }
