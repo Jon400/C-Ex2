@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int mat[MAT_SIZE][MAT_SIZE][MAT_SIZE] = {0};
+int mat[MAT_SIZE][MAT_SIZE][MAT_SIZE + 1] = {0};
 
 /*
 This function initiate the dynamic programming table with the input matrix graph
@@ -27,18 +27,18 @@ Using dynamic programming Floyd-warshall algorithm
 */
 int getDist(int i, int j, int k)
 {
-    if (i == j)
-    {
-        mat[i][j][k] = 0;
-        return mat[i][j][k];
-    }
-    else if (k == 0)
+    if (k == 0)
     {
         return mat[i][j][k];
     }
-    else if (mat[i][j][k] != 0)
+    else if (i == j)
     {
-        return mat[i][j][k];
+        mat[i][j][k - 1] = 0;
+        return mat[i][j][k - 1];
+    }
+    else if (mat[i][j][k - 1] != 0)
+    {
+        return mat[i][j][k - 1];
     }
     else
     {
@@ -72,32 +72,24 @@ int getDist(int i, int j, int k)
 
 int iterGetDist()
 {
-    for (size_t k = 1; k < MAT_SIZE; k++)
+    for (size_t k = 1; k <= MAT_SIZE; k++)
     {
         for (size_t i = 0; i < MAT_SIZE; i++)
         {
             for (size_t j = 0; j < MAT_SIZE; j++)
             {
-                if (mat[i][j][k - 1] == 0)
+                if (i != j)
                 {
-                    if (((mat[i][k][k-1] != 0) || (i == k)) && ((mat[k][j][k-1] != 0) || (j == k)))
-                    {
-                        mat[i][j][k] = mat[i][k][k-1] + mat[k][j][k-1];
+                    if ((mat[i][k - 1][k - 1] != 0) && (mat[k - 1][j][k - 1] != 0)) {
+                        mat[i][j][k] = mat[i][j][k - 1] > (mat[i][k - 1][k - 1] + mat[k - 1][j][k - 1])
+                        ? (mat[i][k - 1][k - 1] + mat[k - 1][j][k - 1]) : mat[i][j][k - 1];
                     }
                     else
                     {
-                        mat[i][j][k] = 0;
+                        mat[i][j][k] =  mat[i][j][k - 1];
                     }
                 }
-                else if (((mat[i][k][k-1] == 0) && (i != k)) || ((mat[k][j][k-1] == 0) && (j != k)))
-                {
-                    mat[i][j][k] = mat[i][j][k - 1];
-                }
-                else
-                {
-                     mat[i][j][k] = mat[i][j][k-1] > (mat[i][k][k-1] + mat[k][j][k-1]) ?
-                      (mat[i][k][k-1] + mat[k][j][k-1]) : mat[i][j][k-1];
-                }
+
             }
             
         }  

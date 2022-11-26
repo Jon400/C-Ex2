@@ -11,6 +11,7 @@ int main() {
         if (input == 'A'){
             getGraph ();
             iterGetDist();
+            //printf("%d", getDist(6, 2, MAT_SIZE));
         }
         else if (input == 'B')
         {
