@@ -18,6 +18,7 @@ int getGraph ()
             scanf("%d", &mat[i][j][0]);
         }
     }
+    iterInitDistTab();
     return 0;
 }
 
@@ -25,52 +26,16 @@ int getGraph ()
 This function will return the distance between two nodes through the minimum weighted path \
 Using dynamic programming Floyd-warshall algorithm
 */
-int getDist(int i, int j, int k)
+int getDist (int i, int j)
 {
-    if (k == 0)
-    {
-        return mat[i][j][k];
+    int res = mat[i][j][MAT_SIZE];
+    if (res == 0){
+        return -1;
     }
-    else if (i == j)
-    {
-        mat[i][j][k - 1] = 0;
-        return mat[i][j][k - 1];
-    }
-    else if (mat[i][j][k - 1] != 0)
-    {
-        return mat[i][j][k - 1];
-    }
-    else
-    {
-        int d_i_j = 0; 
-        int d_i_k = 0;
-        int d_k_j = 0;
-        d_i_j = getDist(i, j, k - 1);
-        d_i_k = getDist(i, k, k - 1);
-        d_k_j = getDist(k, j, k - 1);
-        if (d_i_j == 0){
-            if (((d_i_k != 0) || (i == k)) && ((d_k_j != 0) || (j == k)))
-            {
-                mat[i][j][k] = d_i_k + d_k_j;
-            }
-            else
-            {
-                mat[i][j][k] = 0;
-            }
-        }
-        else if (((d_i_k == 0) && (i != k)) || ((d_k_j == 0) && (j != k)))
-        {
-            mat[i][j][k] = d_i_j;
-        }
-        else
-        {
-            mat[i][j][k] = d_i_j > (d_i_k + d_k_j) ? (d_i_k + d_k_j) : d_i_j;
-        }
-        return mat[i][j][k];
-    }
+    return res;
 }
 
-int iterGetDist()
+int iterInitDistTab()
 {
     for (size_t k = 1; k <= MAT_SIZE; k++)
     {
@@ -81,8 +46,15 @@ int iterGetDist()
                 if (i != j)
                 {
                     if ((mat[i][k - 1][k - 1] != 0) && (mat[k - 1][j][k - 1] != 0)) {
-                        mat[i][j][k] = mat[i][j][k - 1] > (mat[i][k - 1][k - 1] + mat[k - 1][j][k - 1])
-                        ? (mat[i][k - 1][k - 1] + mat[k - 1][j][k - 1]) : mat[i][j][k - 1];
+                        if (mat[i][j][k - 1] == 0)
+                        {
+                            mat[i][j][k] = (mat[i][k - 1][k - 1] + mat[k - 1][j][k - 1]);
+                        }
+                        else 
+                        {
+                            mat[i][j][k] = mat[i][j][k - 1] > (mat[i][k - 1][k - 1] + mat[k - 1][j][k - 1])
+                                ? (mat[i][k - 1][k - 1] + mat[k - 1][j][k - 1]) : mat[i][j][k - 1];
+                        }
                     }
                     else
                     {
@@ -103,8 +75,8 @@ This function returns if two nodes are connected
 int isConnected(int i, int j)
 {
     int res = 0;
-    res = getDist(i, j, MAT_SIZE - 1);
-    if (res == 0)
+    res = getDist(i, j);
+    if (res == -1)
     {
         return 0;
     }

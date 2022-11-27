@@ -10,8 +10,6 @@ int main() {
     while (scanf("%c", &input) != EOF){
         if (input == 'A'){
             getGraph ();
-            iterGetDist();
-            //printf("%d", getDist(6, 2, MAT_SIZE));
         }
         else if (input == 'B')
         {
@@ -27,12 +25,21 @@ int main() {
                 printf("False\n");
             }
         }
+        else if (input == 'C')
+        {
+            scanf("%d", &node_a);
+            scanf("%d", &node_b);
+            res = getDist(node_a, node_b);
+            printf("%d\n", res);
+        }
+        else if (input == 'D'){
+            return 0;
+        }
         else
         {
             continue;
         }
     }
 
-    //int bb = getDist(9, 1, MAT_SIZE - 1);
-
+    return 0;
 }
