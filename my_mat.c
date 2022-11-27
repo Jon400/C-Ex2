@@ -82,13 +82,3 @@ int isConnected(int i, int j)
     }
     return 1;
 }
-/*
-Will print the path between two nodes by backtracking on the dynamic programming table
-*/
-//int printPath(int i, int j, int k)
-//{
-//    if (k == 0)
-//   {
-//        returnb0
-//    }
-//}
